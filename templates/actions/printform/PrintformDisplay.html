@@ -84,7 +84,9 @@
             {$total_total=0.0}
             {$total_tax=0.0}
             {$total_amount=0.0}
+            {$total_quantity = 0}
             {foreach $items as $id => $order_item}
+                {$total_quantity = $total_quantity + $order_item.quantity}
                 {if $order_item.tax_included}
                     {$total_tax=$total_tax+$order_item.tax}
                 {/if}
@@ -98,6 +100,15 @@
                     <td class="b_left b_bottom rightAlign nobr b_right inline_edit">{$order_item.total|wa_format_amount:$order.currency:'%2'}</td>
                 </tr>
             {/foreach}
+
+            <tr>
+                <td class="b_left b_bottom rightAlign">ИТОГО:</td>
+                <td class="b_left b_bottom centerAlign">-----</td>
+                <td class="b_left b_bottom centerAlign inline_edit">-----</td>
+                <td class="b_left b_bottom inline_edit">{$total_quantity|string_format:"%d"}</td>
+                <td class="b_left b_bottom centerAlign nobr inline_edit">-----</td>
+                <td class="b_left b_bottom rightAlign nobr b_right inline_edit">{$total_amount|wa_format_amount:$order.currency:'%2'}</td>
+            </tr>
 
         </table>
 
