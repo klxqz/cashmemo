@@ -43,10 +43,6 @@ class shopCashmemoPluginPrintformDisplayAction extends waViewAction {
         $this->view->assign('items', $items);
     }
 
-    public function allowedCurrency() {
-        return 'RUB';
-    }
-
     private function getItems($order) {
         $items = $order->items;
         $product_model = new shopProductModel();
